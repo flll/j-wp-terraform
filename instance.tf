@@ -67,3 +67,7 @@ resource "oci_core_instance" "wp_instance" {
     create = "60m"
   }
 }
+data "oci_identity_availability_domain" "ad" {
+  compartment_id = var.tenancy_ocid
+  ad_number      = 1
+}
