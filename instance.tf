@@ -3,7 +3,7 @@ resource "oci_core_instance" "wp_instance" {
   display_name        = "var.instance_display_name"
   shape               = "var.instance_shape"
   source_details {
-    source_id = "${var.instance_image_ocid[var.region]}"
+    source_id = "var.instance_image_ocid[${var.region}]"
     source_type = "image"
   }
   metadata = {
