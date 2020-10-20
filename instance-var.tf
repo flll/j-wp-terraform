@@ -1,4 +1,4 @@
-variable "NumInstances"{
+variable "num_instances"{
   default = "1"
 }
 variable "instance_shape" {
