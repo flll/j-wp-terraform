@@ -24,10 +24,6 @@ export TF_VAR_private_key_path="~/.oci/oci-api-key.pem"
 export TF_VAR_fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`
 export TF_VAR_region=$OCI_REGION
 export TF_VAR_ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mPKCS8`
-
-export TF_VAR_num_instances="1"
-export TF_VAR_instance_shape="VM.Standard2.1"
-export TF_VAR_instance_display_name="WordPressInstance"
 echo -n "done"
 
 export -p
