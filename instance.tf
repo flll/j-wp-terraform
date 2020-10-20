@@ -1,4 +1,4 @@
-resource "oci_core_instance" "test_instance" {
+resource "oci_core_instance" "wp_instance" {
   count               = "var.num_instances"
   compartment_id      = "var.compartment_ocid"
   display_name        = "var.instance_display_name"
