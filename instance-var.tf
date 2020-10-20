@@ -1,6 +1,3 @@
-variable "num_instances"{
-  default = "1"
-}
 variable "instance_shape" {
   default = "VM.Standard2.1"
 }
@@ -16,4 +13,6 @@ variable "tenancy_ocid" {}
 variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key_path" {}
+variable "region" {}
+variable "ssh_public_key" {}
 variable "region" {}
