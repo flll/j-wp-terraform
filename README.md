@@ -1,2 +1,2 @@
-前提
+前提  
 oci console
