@@ -5,7 +5,7 @@ variable "tenancy_ocid" {}
 variable "region" {}
 variable "compartment_ocid" {}
 variable "ssh_public_key" {}
-variable　"instance_display_name" {}
+variable "instance_display_name" {}
 
 provider "oci" {
   tenancy_ocid     = var.tenancy_ocid
