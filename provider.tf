@@ -7,5 +7,5 @@ provider "oci" {
 }
 
 output "InstancePublicIP" {
-  value = ["oci_core_instance.test_instance.*.public_ip"]
+  value = ["oci_core_instance.wp_instance.*.public_ip"]
 }
