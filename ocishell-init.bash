@@ -1,7 +1,6 @@
 #!/bin/bash -e
 set -o pipefail
 cd `dirname $0`
-source ~/.bash_profile
 
 if [ ! -d ~/.oci ]; then
         mkdir ~/.oci
@@ -31,8 +30,7 @@ export TF_VAR_instance_shape="VM.Standard2.1"
 export TF_VAR_instance_display_name="WordPressInstance"
 echo -n "done"
 
-
-echo $TF_VAR_region $TF_VAR_fingerprint !!!!!!!!!!!! $TF_VAR_num_instances $TF_VAR_instance_display_name
+export -p
 echo FINISH
 
 terraform init
