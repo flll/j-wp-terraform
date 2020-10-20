@@ -1,6 +1,7 @@
 #!/bin/bash -e
 set -o pipefail
 cd `dirname $0`
+source ~/.bash_profile
 
 if [ ! -d ~/.oci ]; then
         mkdir ~/.oci
