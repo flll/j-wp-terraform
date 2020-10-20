@@ -53,6 +53,8 @@ resource "oci_core_instance" "wp_instance" {
   compartment_id      = "var.compartment_ocid"
   display_name        = "var.instance_display_name"
   shape               = "var.instance_shape"
+  count               = var.num_instances
+  availability_domain = data.oci_identity_availability_domain.ad.name
   source_details {
     source_type = "image"
     source_id = var.flex_instance_image_ocid[var.region]
