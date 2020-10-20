@@ -32,7 +32,7 @@ export TF_VAR_instance_display_name="WordPressInstance"
 echo -n "done"
 
 
-
+echo $TF_VAR_region $TF_VAR_fingerprint !!!!!!!!!!!! $TF_VAR_num_instances $TF_VAR_instance_display_name
 echo FINISH
 
 terraform init
