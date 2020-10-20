@@ -24,3 +24,7 @@ export TF_VAR_ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mP
 echo -n "done  "
 
 echo FINISH
+
+terraform init
+terraform plan -out="wp-p"
+terraform apply "wp-p"
