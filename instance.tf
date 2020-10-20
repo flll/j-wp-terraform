@@ -22,8 +22,6 @@ variable "compartment_ocid" {
 variable "ssh_public_key" {
 }
 
-variable "ssh_private_key" {
-}
 
 provider "oci" {
   tenancy_ocid     = var.tenancy_ocid
@@ -32,7 +30,6 @@ provider "oci" {
   private_key_path = var.private_key_path
   region           = var.region
 }
-# Defines the number of instances to deploy
 variable "num_instances" {
   default = "3"
 }
@@ -67,9 +64,4 @@ resource "oci_core_instance" "wp_instance" {
   timeouts {
     create = "60m"
   }
-}
-
-data "oci_identity_availability_domain" "ad" {
-  compartment_id = var.tenancy_ocid
-  ad_number      = 1
 }
