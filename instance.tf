@@ -4,15 +4,6 @@
 variable "tenancy_ocid" {
 }
 
-variable "user_ocid" {
-}
-
-variable "fingerprint" {
-}
-
-variable "private_key_path" {
-}
-
 variable "region" {
 }
 
@@ -25,13 +16,10 @@ variable "ssh_public_key" {
 
 provider "oci" {
   tenancy_ocid     = var.tenancy_ocid
-  user_ocid        = var.user_ocid
-  fingerprint      = var.fingerprint
-  private_key_path = var.private_key_path
   region           = var.region
 }
 variable "num_instances" {
-  default = "3"
+  default = "1"
 }
 
 variable "num_iscsi_volumes_per_instance" {
@@ -50,9 +38,9 @@ variable "flex_instance_image_ocid" {
 }
 
 resource "oci_core_instance" "wp_instance" {
-  compartment_id      = "var.compartment_ocid"
-  display_name        = "var.instance_display_name"
-  shape               = "var.instance_shape"
+  compartment_id      = var.compartment_ocid
+  display_name        = var.instance_display_name
+  shape               = var.instance_shape
   count               = var.num_instances
   availability_domain = data.oci_identity_availability_domain.ad.name
   source_details {
