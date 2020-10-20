@@ -6,7 +6,7 @@ resource "oci_core_instance" "test_instance" {
   shape               = "var.instance_shape"
   source_details {
     source_id = var.instance_image_ocid[var.region]
-    source_type = image
+    source_type = "image"
   }
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
