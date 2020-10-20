@@ -10,7 +10,7 @@ resource "oci_core_instance" "test_instance" {
   }
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    user_data           = "base64encode(file("cloud-config"))"
+    user_data           = filebase64("${path.module}/cloud-config")
   }
   timeouts {
     create = "60m"
