@@ -12,3 +12,8 @@ packages:
 
 runcmd:
     - curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
+
+power_state:
+    delay: "+3"
+    mode: reboot
+    timeout: 30
