@@ -9,7 +9,3 @@ provider "oci" {
 output "InstancePublicIP" {
   value = ["oci_core_instance.test_instance.*.public_ip"]
 }
-
-data "oci_identity_availability_domains" "ads" {
-  compartment_id = "var.tenancy_ocid"
-}
