@@ -29,6 +29,4 @@ echo -n "done"
 export -p
 echo FINISH
 
-terraform init
-terraform plan -out="wp-p"
-terraform apply "wp-p"
+. ./after/*.bash
