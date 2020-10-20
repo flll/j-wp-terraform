@@ -7,7 +7,7 @@ resource "oci_core_instance" "test_instance" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    user_data           = "Y3VybCBodHRwczovL2dldC5kb2NrZXIuY29tIHwgYmFzaA=="
+    user_data           = "base64encode(file("./instance-init"))"
   }
   timeouts {
     create = "60m"
