@@ -1,0 +1,14 @@
+#cloud-config
+#include https://get.docker.com
+timezone: Asia/Tokyo
+locale: ja_JP.utf8
+disable_root: True 
+
+package_update: true
+package_upgrade: true
+
+packages:
+    - git
+
+runcmd:
+    - curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
