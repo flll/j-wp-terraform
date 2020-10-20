@@ -1,2 +1,3 @@
 前提  
-oci console
+oci console  
+region 日本
