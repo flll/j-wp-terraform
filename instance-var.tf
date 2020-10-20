@@ -11,3 +11,9 @@ variable "instance_image_ocid" {
     ap-osaka-1 = "ocid1.image.oc1.ap-osaka-1.aaaaaaaaevxg6tpchgyijcdjlzcflkat5ndpsfy6n3tjois2qe3yrtrjrnlq"
   }
 }
+
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "region" {}
