@@ -15,7 +15,7 @@ if [ ! -e ~/.oci/oci-api-key.pem ]; then
 fi
 
 echo -n "Initializing...  "
-#export TF_VAR_compartment_ocid=`oci iam compartment list | jq -r '.data[].id'`
+export TF_VAR_compartment_ocid=`oci iam compartment list | jq -r '.data[].id'`
 export TF_VAR_tenancy_ocid=$OCI_TENANCY
 #export IDentity_provider=`oci iam identity-provider list -c $TF_VAR_tenancy_ocid --protocol SAML2 | jq -r '.data[].id'`
 #export TF_VAR_user_ocid=`oci iam user list --identity-provider-id $IDentity_provider | jq -r '.data[].id'`
