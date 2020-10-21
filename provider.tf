@@ -4,7 +4,7 @@
 # Configure the Oracle Cloud Infrastructure provider to use Instance Principal based authentication
 provider "oci" {
   tenancy_ocid = var.tenancy_ocid
-  config_file_profile= "/etc/oci/config"
+  config_file_profile= war.config_file_profile
 }
 
 data "oci_identity_availability_domain" "ad" {
