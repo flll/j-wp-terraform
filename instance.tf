@@ -44,19 +44,19 @@ resource "oci_core_instance" "wp_instance" {
   }
 }
 
+
+
 resource "oci_core_vcn" "wp_vcn" {
   cidr_block     = "10.5.0.0/16"
   compartment_id = var.compartment_ocid
   display_name   = "wp_vcn"
   dns_label      = "wp_vcn"
 }
-
 resource "oci_core_internet_gateway" "wp_internet_gateway" {
   compartment_id = var.compartment_ocid
   display_name   = "WPInternetGateway"
   vcn_id         = oci_core_vcn.wp_vcn.id
 }
-
 resource "oci_core_default_route_table" "default_route_table" {
   manage_default_resource_id = oci_core_vcn.wp_vcn.default_route_table_id
   display_name               = "DefaultRouteTable"
@@ -68,14 +68,7 @@ resource "oci_core_default_route_table" "default_route_table" {
   }
 }
 
-resource "oci_core_subnet" "wp_subnet" {
-  availability_domain = data.oci_identity_availability_domain.ad.name
-  cidr_block          = "10.5.50.0/24"
-  display_name        = "wp_subnet"
-  dns_label           = "wordpress_subnet"
-  security_list_ids   = [oci_core_vcn.wp_vcn.default_security_list_id]
-  compartment_id      = var.compartment_ocid
-}
+
 
 resource "oci_core_subnet" "wp_subnet" {
   cidr_block          = "10.5.50.0/24"
