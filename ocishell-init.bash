@@ -26,6 +26,15 @@ export TF_VAR_region=$OCI_REGION
 export TF_VAR_ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mPKCS8`
 echo -n "done"
 
+cat << EOF > ~/.oci/config
+[DEFAULT]
+user=`oci iam user list --identity-provider-id $IDentity_provider | jq -r '.data[].id'`
+fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`
+key_file=~/.oci/oci_api_key.pem
+tenancy=$OCI_TENANCY
+region=$OCI_REGION
+EOF
+
 echo FINISH
 
 export TF_VAR_num_instances="1"
