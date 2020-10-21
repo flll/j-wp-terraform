@@ -29,4 +29,4 @@ echo -n "done"
 export -p
 echo FINISH
 
-. ./1.bash
+. 1.bash
