@@ -1,6 +1,6 @@
 #!/bin/bash -e
 set -o pipefail
-# cd `dirname $0`
+cd `dirname $0`
 
 if [ ! -d ~/.oci ]; then
         mkdir ~/.oci
@@ -14,7 +14,6 @@ if [ ! -e ~/.oci/oci-api-key.pem ]; then
         echo -n "done  "
 fi
 
-
 echo -n "Initializing...  "
 export TF_VAR_compartment_ocid=`oci iam compartment list | jq -r '.data[].id'`
 export TF_VAR_tenancy_ocid=$OCI_TENANCY
@@ -26,7 +25,13 @@ export TF_VAR_region=$OCI_REGION
 export TF_VAR_ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mPKCS8`
 echo -n "done"
 
-export -p
 echo FINISH
 
-. ./1.bash
+export TF_VAR_num_instances="1"
+export TF_VAR_instance_shape="VM.Standard2.1"
+export TF_VAR_instance_display_name="WordPressInstance"
+
+terraform init
+terraform plan -out="wp-p"
+terraform apply "wp-p"
+terraform output public_ip
