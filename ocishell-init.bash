@@ -24,9 +24,9 @@ export TF_VAR_tenancy_ocid=$OCI_TENANCY
 #export TF_VAR_fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`
 export TF_VAR_region=$OCI_REGION
 export TF_VAR_ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mPKCS8`
-echo -n "done"
+echo -n "done  "
 
-cat << EOF > ~/.oci/config
+cat << EOF > ~/.oci/config-wp
 [DEFAULT]
 user=`oci iam user list --identity-provider-id $IDentity_provider | jq -r '.data[].id'`
 fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`
@@ -35,7 +35,7 @@ tenancy=$OCI_TENANCY
 region=$OCI_REGION
 EOF
 
-echo FINISH
+echo -n "FINISH  "
 
 export TF_VAR_num_instances="1"
 export TF_VAR_instance_shape="VM.Standard2.1"
