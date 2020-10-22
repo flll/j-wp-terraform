@@ -19,7 +19,7 @@ export TF_VAR_config_file_profile="~/.oci/config"
 export TF_VAR_compartment_ocid=`oci iam compartment list | jq -r '.data[].id'`
 export TF_VAR_tenancy_ocid=$OCI_TENANCY
 export IDentity_provider=`oci iam identity-provider list -c $TF_VAR_tenancy_ocid --protocol SAML2 | jq -r '.data[].id'`
-#export  TF_VAR_user_ocid=`oci iam user list --identity-provider-id $IDentity_provider | jq -r '.data[].id'`
+#export  TF_VAR_user_ocid=`oci iam user list --identity-provider-id `oci iam identity-provider list -c $TF_VAR_tenancy_ocid --protocol SAML2 | jq -r '.data[].id'` | jq -r '.data[].id'`
 #export  TF_VAR_private_key_path="~/.oci/oci-api-key.pem"
 #export  TF_VAR_fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`
 export TF_VAR_region=$OCI_REGION
@@ -42,6 +42,11 @@ export TF_VAR_instance_shape="VM.Standard2.1"
 export TF_VAR_instance_display_name="WordPressInstance"
 
 terraform init
-terraform plan -out="wp-p"
-terraform apply "wp-p"
+terraform apply  -var 'region=$OCI_REGION'\ 
+-var 'fingerprint=`openssl rsa -pubout -outform DER -in ~/.oci/oci-api-key.pem | openssl md5 -c | sed -e 's/(stdin)= //'`'\ 
+-var 'private_key_path="~/.oci/oci-api-key.pem"'\ 
+-var 'user_ocid=`oci iam user list --identity-provider-id `oci iam identity-provider list -c $TF_VAR_tenancy_ocid --protocol SAML2 | jq -r '.data[].id'` | jq -r '.data[].id'`'\ 
+-var 'tenancy_ocid='$OCI_TENANCY'\ 
+-var 'compartment_ocid=`oci iam compartment list | jq -r '.data[].id'`'\ 
+-var 'ssh_public_key=`ssh-keygen -f ~/.oci/oci-api-key-public.pem -i -mPKCS8`'
 terraform output public_ip
