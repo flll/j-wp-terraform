@@ -17,9 +17,9 @@ export CLI_OCI_COMPARTMENTID=`oci iam compartment list | jq -r '.data[]."compart
 oci compute instance launch \
     --compartment-id $CLI_OCI_COMPARTMENTID \
     --shape VM.Standard2.1 \
-    --subnet-id `oci network subnet list  -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
+    --subnet-id `oci network subnet list -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
-    --user-data-file "./cloud-config" \
+    --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file "~/.oci/oci-api-key-public.pem" \
     --image-id $CLI_OCI_IMAGE 
