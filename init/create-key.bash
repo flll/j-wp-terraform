@@ -13,3 +13,4 @@ if [ ! -e ~/.oci/oci-api-key.pem ]; then
     openssl rsa -pubout -in ~/.oci/oci-api-key.pem -out ~/.oci/oci-api-key-public.pem
     echo -n "done  "
 fi
+echo "done create-key.bash"
