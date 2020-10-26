@@ -24,5 +24,5 @@ oci compute instance launch \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
-    --ssh-authorized-keys-file "~/.oci/oci-key-public-ssh" \
+    --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
     --image-id $CLI_OCI_IMAGE 
