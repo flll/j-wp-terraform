@@ -19,7 +19,7 @@ export CLI_OCI_AD=`oci iam availability-domain list --compartment-id ${CLI_OCI_C
 oci compute instance launch \
     --availability-domain ${CLI_OCI_AD}\
     --compartment-id ${CLI_OCI_COMPARTMENTID} \
-    --shape "VM.Standard2.1" \
+    --shape "VM.Standard.E2.1.Micro" \
     --subnet-id `oci network subnet list -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
