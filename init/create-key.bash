@@ -11,3 +11,4 @@ if [ ! -e ~/.oci/oci-api-key.pem ]; then
     echo -n "done  "
 fi
 echo "done create-key.bash"
+exit 0
