@@ -1,6 +1,5 @@
 #!/bin/bash -e
 set -o pipefail
-cd `dirname $0`
 
 #init
 . init/create-key.bash
