@@ -2,7 +2,7 @@
 set -o pipefail
 
 #init
-. j-wp-terraform/init/create-key.bash
+bash j-wp-terraform/init/create-key.bash
 
 declare -A CLI_OCI_IMAGEMAP
 
