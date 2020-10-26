@@ -1,8 +1,9 @@
 #!/bin/bash -e
 set -o pipefail
+cd `dirname $0`
 
 #init
-bash j-wp-terraform/init/create-key.bash
+bash init/create-key.bash
 
 declare -A CLI_OCI_IMAGEMAP
 
@@ -22,6 +23,6 @@ oci compute instance launch \
     --subnet-id `oci network subnet list -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
-    --user-data-file "j-wp-terraform/cloud-config" \
+    --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file "~/.oci/oci-api-key-public.pem" \
     --image-id $CLI_OCI_IMAGE 
