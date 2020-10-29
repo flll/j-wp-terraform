@@ -8,7 +8,7 @@ bash init/create-key.bash
 declare -A CLI_OCI_IMAGEMAP
 
 CLI_OCI_IMAGEMAP=(
-    ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaa2lb55favhw7mhirylv4pniqu3oxpmoyjbrtfank4kdleiflfqbta"
+    ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaahk3krxqgimom7cy2z4b5lsoakm6bhmnbaaaincvgtuu4wivntxjq"
     ["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaar7ovad7pwnlsre6fk3ienut5bb522h32uctzxfk3ubwfm5hksx3q"
 )
 
@@ -28,8 +28,7 @@ oci compute instance launch \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
-    --image-id $CLI_OCI_IMAGE > instance.json
-#jq -r '.data.id'
+    --image-id $CLI_OCI_IMAGE | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
 
 echo "IPアドレスを取得しています...."
