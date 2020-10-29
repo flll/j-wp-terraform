@@ -34,6 +34,6 @@ echo "DONE"
 export aiueo=`cat instanceid-stdin`
 
 echo "IPアドレスを取得しています...."
-echo "20秒間そのままお待ち下さい"
-sleep 20s
+echo "5秒間そのままお待ち下さい"
+sleep 5s
 oci compute instance list-vnics --compartment-id ${CLI_OCI_COMPARTMENTID} --instance-id $aiueo --query 'data[].{"名前":"display-name", "ＩＰアドレス":"public-ip"}' --output table
