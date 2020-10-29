@@ -17,6 +17,8 @@ echo -n "env Declaration... "
 export CLI_OCI_COMPARTMENTID=`oci iam compartment list | jq -r '.data[]."compartment-id"'`
 export CLI_OCI_AD=`oci iam availability-domain list --compartment-id ${CLI_OCI_COMPARTMENTID} | jq -r '.data[].name'`
 echo "DONE"
+
+echo -n "Instance Launch... "
 oci compute instance launch \
     --availability-domain ${CLI_OCI_AD}\
     --compartment-id ${CLI_OCI_COMPARTMENTID} \
@@ -26,8 +28,9 @@ oci compute instance launch \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
-    --image-id $CLI_OCI_IMAGE 
-    #jq -r '.data[].id'
+    --image-id $CLI_OCI_IMAGE > instance.json
+#jq -r '.data.id'
+echo "DONE"
 
 echo "IPアドレスを取得しています...."
 echo "20秒間そのままお待ち下さい"
