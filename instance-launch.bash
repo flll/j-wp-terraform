@@ -8,8 +8,8 @@ bash init/create-key.bash
 declare -A CLI_OCI_IMAGEMAP
 
 CLI_OCI_IMAGEMAP=(
-    ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaahk3krxqgimom7cy2z4b5lsoakm6bhmnbaaaincvgtuu4wivntxjq"
-    ["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaar7ovad7pwnlsre6fk3ienut5bb522h32uctzxfk3ubwfm5hksx3q"
+    ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaacmmicmlaejkkorfp5es7r6h4hfi5zxupz3muxchksgkugztkl4ea"
+    ["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaamcrmkxuvsk4coctz5jtsdbtoiin4xvvjo6zceonlib57eiliaupa"
 )
 
 export CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
@@ -31,6 +31,9 @@ oci compute instance launch \
     --image-id $CLI_OCI_IMAGE | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
 
+export aiueo=`cat instanceid-stdin`
+
 echo "IPアドレスを取得しています...."
 echo "20秒間そのままお待ち下さい"
-#oci compute instance list-vnics --compartment-id ${CLI_OCI_COMPARTMENTID} --instance-id 
+sleep 20s
+oci compute instance list-vnics --compartment-id ${CLI_OCI_COMPARTMENTID} --instance-id $aiueo --query 'data[].{"名前":"display-name", "ＩＰアドレス":"public-ip"}' --output table
