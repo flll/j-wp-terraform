@@ -13,7 +13,7 @@ CLI_OCI_IMAGEMAP=(
 )
 
 export CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
-echo -r "env Declaration... "
+echo -n "env Declaration... "
 export CLI_OCI_COMPARTMENTID=`oci iam compartment list | jq -r '.data[]."compartment-id"'`
 export CLI_OCI_AD=`oci iam availability-domain list --compartment-id ${CLI_OCI_COMPARTMENTID} | jq -r '.data[].name'`
 echo "DONE"
