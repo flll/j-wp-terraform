@@ -1,7 +1,7 @@
 #cloud-config
 #include https://get.docker.com
 timezone: Asia/Tokyo
-locale: ja_JP.utf8
+locale: c.utf8
 disable_root: True 
 
 package_update: true
@@ -9,11 +9,9 @@ package_upgrade: true
 
 packages:
     - git
+    - docker
 
 runcmd:
     - curl -fsSL https://get.docker.com | sh
+    - sudo gpasswd -a ubuntu docker 
 
-power_state:
-    delay: "+3"
-    mode: reboot
-    timeout: 30
