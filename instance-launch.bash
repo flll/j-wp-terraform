@@ -26,7 +26,8 @@ oci compute instance launch \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
-    --image-id $CLI_OCI_IMAGE | jq -r '.data[].id'
+    --image-id $CLI_OCI_IMAGE 
+    #jq -r '.data[].id'
 
 echo "IPアドレスを取得しています...."
 echo "20秒間そのままお待ち下さい"
