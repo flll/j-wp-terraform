@@ -1,17 +1,12 @@
 #cloud-config
 #include https://get.docker.com
 timezone: Asia/Tokyo
-locale: C.utf8
 disable_root: True
-
-package_update: true
-package_upgrade: true
 
 packages:
     - git
 
 runcmd:
-    - sudo dpkg --configure --pending
     - curl -fsSL https://get.docker.com | sh
     - curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     - sudo gpasswd -a ubuntu docker
