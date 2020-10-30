@@ -5,7 +5,7 @@ if [ ! -d ~/.oci ]; then
 fi
 if [ ! -e ~/.oci/oci-key.pem ]; then
     echo -n "key-creating...  "
-    openssl genrsa -out ~/.oci/oci-key.pem 4096
+    openssl genrsa -out ~/.oci/oci-key.pem 2048
     chmod go-rwx ~/.oci/oci-key.pem
     openssl rsa -pubout -in ~/.oci/oci-key.pem -out ~/.oci/oci-key-public.pem
     ~/.oci/oci-key-public-ssh
