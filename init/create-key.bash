@@ -12,5 +12,3 @@ if [ ! -e ~/.oci/oci-key.pem ]; then
     ssh-keygen -f ~/.oci/oci-key-public.pem -i -mPKCS8 > ~/.oci/oci-key-public-ssh
     echo -n "done  "
 fi
-
-echo "done create-key.bash"
