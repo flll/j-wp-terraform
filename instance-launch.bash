@@ -28,10 +28,11 @@ oci compute instance launch \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
     --image-id $CLI_OCI_IMAGE | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
-
 export aiueo=`cat instanceid-stdin`
-
+(
+rm -f instanceid-stdin
 echo "IPアドレスを取得しています...."
 echo "10秒間そのままお待ち下さい"
-sleep 12s
+)&
+sleep 12
 oci compute instance list-vnics --compartment-id ${CLI_OCI_COMPARTMENTID} --instance-id $aiueo --query 'data[].{"名前":"display-name", "ＩＰアドレス":"public-ip"}' --output table
