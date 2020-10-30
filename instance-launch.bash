@@ -24,7 +24,7 @@ oci compute instance launch \
     --subnet-id `oci network subnet list -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
-    --user-data-file "init/init-instance.bash" \
+    --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
     --image-id $CLI_OCI_IMAGE | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
