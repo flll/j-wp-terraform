@@ -16,3 +16,4 @@ runcmd:
     - gpasswd -a ubuntu docker
     - sudo chown ubuntu /usr/local/bin/docker-compose
     - sudo -u ubuntu chmod +x /usr/local/bin/docker-compose
+    - sudo reboot
