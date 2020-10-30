@@ -11,9 +11,7 @@ export CLI_OCI_INSTANCE_OCID=`oci compute instance list --compartment-id ${CLI_O
 oci compute instance get --instance-id ${CLI_OCI_INSTANCE_OCID} --query 'data.{"名前":"display-name"}' --output table 
 echo 数秒お待ち下さい...
 (
-sleep 5
-echo ""
-sleep 5
+sleep 3
 echo "\"Y\"[はい] もしくは\"N\"[拒否]のちエンターの入力をお願いします"
 )&
 oci compute instance terminate --instance-id ${CLI_OCI_INSTANCE_OCID} 
