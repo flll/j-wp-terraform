@@ -1,5 +1,4 @@
 #cloud-config
-#include https://get.docker.com
 timezone: Asia/Tokyo
 disable_root: True
 
@@ -8,6 +7,8 @@ packages:
 
 runcmd:
     - sudo apt update
+    - sudo apt upgrade -y
+    - sudo apt autoremove -y
     - curl -fsSL https://get.docker.com | sh
     - curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     - sudo gpasswd -a ubuntu docker
