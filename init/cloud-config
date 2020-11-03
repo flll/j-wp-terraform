@@ -6,10 +6,10 @@ packages:
     - git
 
 runcmd:
-    - sudo sed -i.bak -e "s%http://ap-osaka-1-ad-1.clouds.archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
+    - sudo sed -i.bak -e "s%http://ap-osaka-1-ad-1.clouds.archive.ubuntu.com/ubuntu%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
     - sudo apt update
     - sudo apt upgrade -y
     - sudo apt autoremove -y
-    - sudo apt-get install docker -y
+    - sudo apt install docker -y
     - sudo gpasswd -a ubuntu docker
     - sudo systemctl reboot
