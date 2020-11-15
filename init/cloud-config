@@ -7,7 +7,7 @@ packages:
 
 runcmd:
     - sudo apt update
-    - sudo apt install docker.io docker-compose cron -y
+    - sudo apt install docker.io docker-compose cron jq -y
     - sudo apt upgrade -y
     - sudo apt autoremove -y
     - sudo gpasswd -a ubuntu docker
