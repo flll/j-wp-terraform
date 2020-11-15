@@ -12,7 +12,7 @@ echo -n "env Declaration... "
     oci-get-ad-ocid
 echo "DONE"
 
-
+oci-once-open-http-port
 
 ## インスタンスの取得
 echo -n "Instance Launch... "
@@ -30,7 +30,8 @@ oci compute instance launch \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
     --image-id ${CLI_OCI_IMAGE} \
-    | jq -r '.data.id' > instanceid-stdin
+    | jq -r '.data.id' \
+        > instanceid-stdin
 echo "DONE"
 
 export aiueo=`cat instanceid-stdin`
@@ -40,4 +41,8 @@ echo "IPアドレスを取得しています...."
 echo "40秒間そのままお待ち下さい"
 )&
 sleep 40
-oci compute instance list-vnics --compartment-id ${CLI_OCI_COMPARTMENTID} --instance-id $aiueo --query 'data[].{"名前":"display-name", "ＩＰアドレス":"public-ip"}' --output table
+oci compute instance list-vnics \
+    --compartment-id ${CLI_OCI_COMPARTMENTID} \
+    --instance-id $aiueo \
+    --query 'data[].{"名前":"display-name", "ＩＰアドレス":"public-ip"}' \
+    --output table
