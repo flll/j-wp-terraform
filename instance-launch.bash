@@ -12,6 +12,8 @@ echo -n "env Declaration... "
     oci-get-ad-ocid
 echo "DONE"
 
+
+
 ## インスタンスの取得
 echo -n "Instance Launch... "
 oci compute instance launch \
@@ -27,7 +29,7 @@ oci compute instance launch \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
-    --image-id $CLI_OCI_IMAGE \
+    --image-id ${CLI_OCI_IMAGE} \
     | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
 
