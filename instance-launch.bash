@@ -11,26 +11,39 @@ CLI_OCI_IMAGEMAP=(
     ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaacmmicmlaejkkorfp5es7r6h4hfi5zxupz3muxchksgkugztkl4ea"
     ["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaamcrmkxuvsk4coctz5jtsdbtoiin4xvvjo6zceonlib57eiliaupa"
 )
+
+## //CLI_OCI_IMAGE// 定義されたOCIDイメージマップから取得
 export CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
+
+## //CLI_OCI_COMPARTMENTID// コンパートメントOCIDを取得
 export CLI_OCI_COMPARTMENTID=`oci iam compartment list \
     | jq -r '.data[]."compartment-id"'`
+
+## //CLI_OCI_AD// ADのOCIDを取得
 export CLI_OCI_AD=`oci iam availability-domain list \
     --compartment-id ${CLI_OCI_COMPARTMENTID} \
     | jq -r '.data[].name'`
 echo "DONE"
 
+## インスタンスの取得
 echo -n "Instance Launch... "
 oci compute instance launch \
     --availability-domain ${CLI_OCI_AD}\
     --compartment-id ${CLI_OCI_COMPARTMENTID} \
     --shape "VM.Standard.E2.1.Micro" \
-    --subnet-id `oci network subnet list -c $CLI_OCI_COMPARTMENTID --sort-by TIMECREATED --sort-order ASC | jq -r '.data[0].id'` \
+    --subnet-id `oci network subnet list \
+            -c ${CLI_OCI_COMPARTMENTID} \
+            --sort-by TIMECREATED \
+            --sort-order ASC \
+            | jq -r '.data[0].id'` \
     --assign-public-ip true \
     --display-name "Wordpress Instance" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
-    --image-id $CLI_OCI_IMAGE | jq -r '.data.id' > instanceid-stdin
+    --image-id $CLI_OCI_IMAGE \
+    | jq -r '.data.id' > instanceid-stdin
 echo "DONE"
+
 export aiueo=`cat instanceid-stdin`
 (
 rm -f instanceid-stdin
