@@ -27,11 +27,10 @@ function oci-get-ad-ocid () {
 }
 
 function oci-once-open-http-port () {
-    [[ -f init/.DONE_add_http_gate ]] && return;
     echo -n "firewall updating... "
     function kid () {
         ## 下のEOFの部分はTABインデントであること
-        securitylist_add_http=`jq -c '' <<-'EOF' | tee .DONE_add_http_gate
+        securitylist_add_http=`jq -c '' <<-'EOF'
         [
             {
                 "source": "0.0.0.0/0",
