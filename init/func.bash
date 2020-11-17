@@ -32,7 +32,7 @@ function oci-once-open-http-port () {
     function kid () {
         ## 下のjsonの部分はTABインデントであること
         securitylist_add_http=(jq -c <<EOF
-        [
+[
             {
                 "source": "0.0.0.0/0",
                 "description": null,
@@ -63,7 +63,7 @@ function oci-once-open-http-port () {
             }
         ]
 EOF
-        ) && touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
+    ) && touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
     }
 
     ## 一番古く作られたサブネットを参照
