@@ -69,14 +69,16 @@ function oci-once-open-http-port () {
     ## 一番古く作られたサブネットを参照
 	#  depend-var \$CLI_OCI_COMPARTMENTID
     CLI_OCI_SUBNETID=`oci network subnet list \
+		--availability-domain ${CLI_OCI_AD} \
         -c ${CLI_OCI_COMPARTMENTID} \
+		${CLI_OCI_AD}
         --sort-by TIMECREATED \
         --sort-order ASC \
         | jq -r '.data[0].id'`
 
     ## セキュリティリストOCIDを取得する。複数ある場合どれでも構わない
     # dedpend-var \$CLI_OCI_SUBNETID
-    CLI_OCI_SECURITY_LISTID=`oci network subnet get 
+    CLI_OCI_SECURITY_LISTID=`oci network subnet get \
         --subnet-id ${CLI_OCI_SUBNETID} \
         | jq -r '.data."security-list-ids"[0]'`
 

@@ -26,7 +26,7 @@ echo "DONE"
 ## インスタンスの取得
 echo -n "Instance Launch... "
 oci compute instance launch \
-    --availability-domain ${CLI_OCI_AD}\
+    --availability-domain ${CLI_OCI_AD} \
     --compartment-id ${CLI_OCI_COMPARTMENTID} \
     --shape "VM.Standard.E2.1.Micro" \
     --subnet-id `oci network subnet list \
