@@ -1,7 +1,9 @@
 #!/bin/bash -e
 set -o pipefail
 cd `dirname $0`
-
+oci-once-open-http-port
+exit 0
+for i in {1..10};do echo "";done
 echo "インスタンス名(サーバー名 web名ではありません)を入力してください"
 echo "何も入力しない場合は\"ウェブインスタンス\"という名前になります"
 read -p "インスタンス名 > " CLI_OCI_LAUNCH_INSTANCE_NAME
@@ -16,8 +18,6 @@ echo -n "env Declaration... "
     oci-get-compartment-ocid
     oci-get-ad-ocid
 echo "DONE"
-
-oci-once-open-http-port
 
 ## インスタンスの取得
 echo -n "Instance Launch... "
