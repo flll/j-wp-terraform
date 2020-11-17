@@ -27,7 +27,7 @@ function oci-get-ad-ocid () {
 }
 
 function oci-once-open-http-port () {
-    [[ ! -f init/.DONE_add_http-gate ]] && return;
+    [[ -f init/.DONE_add_http-gate ]] && return;
     echo -n "firewall updating... "
     function kid () {
 		## 下のjsonの部分はTABインデントであること
