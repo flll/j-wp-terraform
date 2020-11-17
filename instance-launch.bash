@@ -1,6 +1,10 @@
 #!/bin/bash -e
 set -o pipefail
 cd `dirname $0`
+
+bash init/create-key.bash
+. init/func.bash
+
 oci-once-open-http-port
 exit 0
 for i in {1..10};do echo "";done
