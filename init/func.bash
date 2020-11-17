@@ -9,19 +9,19 @@ function oci-get-region-ocid () {
 		["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaamcrmkxuvsk4coctz5jtsdbtoiin4xvvjo6zceonlib57eiliaupa"
 	)
 	## //CLI_OCI_IMAGE// 定義されたOCIDイメージマップから取得
-	CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
+	export CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
 }
 
 function oci-get-compartment-ocid () {
 	## //CLI_OCI_COMPARTMENTID// コンパートメントOCIDを取得
-	CLI_OCI_COMPARTMENTID=`oci iam compartment list \
+	export CLI_OCI_COMPARTMENTID=`oci iam compartment list \
 		| jq -r '.data[]."compartment-id"'`
 }
 
 function oci-get-ad-ocid () {
 	## //CLI_OCI_AD// ADのOCIDを取得
     #  depend-var: CLI_OCI_COMPARTMENTID
-	CLI_OCI_AD=`oci iam availability-domain list \
+	export CLI_OCI_AD=`oci iam availability-domain list \
 		--compartment-id ${CLI_OCI_COMPARTMENTID} \
 		| jq -r '.data[].name'`
 }
