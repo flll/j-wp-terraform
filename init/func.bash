@@ -63,7 +63,8 @@ function oci-once-open-http-port () {
             }
         ]
 EOF
-    ) && touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
+    echo securitylist_add_http
+    touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
     }
 
     ## 一番古く作られたサブネットを参照
