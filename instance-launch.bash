@@ -2,12 +2,7 @@
 set -o pipefail
 cd `dirname $0`
 
-bash init/create-key.bash
-. init/func.bash
-    oci-get-compartment-ocid
-    oci-get-ad-ocid
-oci-once-open-http-port
-exit 0
+
 for i in {1..10};do echo "";done
 echo "インスタンス名(サーバー名 web名ではありません)を入力してください"
 echo "何も入力しない場合は\"ウェブインスタンス\"という名前になります"

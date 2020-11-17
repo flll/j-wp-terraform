@@ -60,6 +60,20 @@ function oci-once-open-http-port () {
                     },
                     "sourcePortRange": null
                 }
+            },
+            {
+                "source": "0.0.0.0/0",
+                "description": null,
+                "icmp-options": null,
+                "protocol": "6",
+                "isStateless": true,
+                "tcpOptions": {
+                    "destinationPortRange": {
+                        "max": 22,
+                        "min": 22
+                    },
+                    "sourcePortRange": null
+                }
             }
         ]
 		EOF
@@ -79,7 +93,6 @@ function oci-once-open-http-port () {
     CLI_OCI_SECURITY_LISTID=`oci network subnet get \
         --subnet-id ${CLI_OCI_SUBNETID} \
         | jq -r '.data."security-list-ids"[0]'`
-    echo kidkid
     kid
     oci network security-list update \
             --security-list-id ${CLI_OCI_SECURITY_LISTID} \
