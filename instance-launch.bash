@@ -3,7 +3,7 @@ set -o pipefail
 cd `dirname $0`
 
 echo "インスタンス名(サーバー名 web名ではありません)を入力してください"
-echo "何も入力しない場合は\"web-instancwe\"という名前になります"
+echo "何も入力しない場合は\"ウェブインスタンス\"という名前になります"
 read -p "インスタンス名 > " CLI_OCI_LAUNCH_INSTANCE_NAME
 
 
@@ -31,7 +31,7 @@ oci compute instance launch \
             --sort-order ASC \
             | jq -r '.data[0].id'` \
     --assign-public-ip true \
-    --display-name "${CLI_OCI_LAUNCH_INSTANCE_NAME:-'wordpress-instance'}" \
+    --display-name "${CLI_OCI_LAUNCH_INSTANCE_NAME:-ウェブインスタンス}" \
     --user-data-file "init/cloud-config" \
     --ssh-authorized-keys-file ~/.oci/oci-key-public-ssh \
     --image-id ${CLI_OCI_IMAGE} \
