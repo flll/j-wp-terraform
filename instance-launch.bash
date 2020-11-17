@@ -4,7 +4,7 @@ cd `dirname $0`
 
 bash init/create-key.bash
 . init/func.bash
-
+    oci-get-compartment-ocid
     oci-get-ad-ocid
 oci-once-open-http-port
 exit 0
