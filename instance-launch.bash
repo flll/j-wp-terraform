@@ -5,6 +5,7 @@ cd `dirname $0`
 bash init/create-key.bash
 . init/func.bash
 
+    oci-get-ad-ocid
 oci-once-open-http-port
 exit 0
 for i in {1..10};do echo "";done
