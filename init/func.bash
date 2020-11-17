@@ -31,7 +31,7 @@ function oci-once-open-http-port () {
     echo -n "firewall updating... "
     function kid () {
         ## 下のEOFの部分はTABインデントであること
-        cat <<-'EOF' > .DONE_add_http_gate
+        securitylist_add_http=`jq -c '' <<-'EOF' | tee .DONE_add_http_gate
         [
             {
                 "source": "0.0.0.0/0",
@@ -63,7 +63,7 @@ function oci-once-open-http-port () {
             }
         ]
 		EOF
-        securitylist_add_http=`cat .DONE_add_http_gate | jq -c`
+        `
         }
 
     ## 一番古く作られたサブネットを参照
