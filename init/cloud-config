@@ -2,13 +2,12 @@
 timezone: Asia/Tokyo
 disable_root: True
 
-packages:
-    - git
-
 runcmd:
+    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge"
     - sudo apt update
-    - sudo apt install docker.io docker-compose cron jq -y
     - sudo apt upgrade -y
+    - sudo apt install docker-ce docker-compose ca-certificates cron jq git -y
     - sudo apt autoremove -y
     - sudo gpasswd -a ubuntu docker
     - sudo systemctl reboot

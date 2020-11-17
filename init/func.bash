@@ -1,4 +1,6 @@
 #!/bin/bash
+##
+#  depend ../で実行すること
 
 function oci-get-region-ocid () {
 	declare -A CLI_OCI_IMAGEMAP
@@ -7,29 +9,26 @@ function oci-get-region-ocid () {
 		["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaamcrmkxuvsk4coctz5jtsdbtoiin4xvvjo6zceonlib57eiliaupa"
 	)
 	## //CLI_OCI_IMAGE// 定義されたOCIDイメージマップから取得
-	export CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
+	CLI_OCI_IMAGE=${CLI_OCI_IMAGEMAP[$OCI_REGION]}
 }
 
 function oci-get-compartment-ocid () {
 	## //CLI_OCI_COMPARTMENTID// コンパートメントOCIDを取得
-	export CLI_OCI_COMPARTMENTID=`oci iam compartment list \
+	CLI_OCI_COMPARTMENTID=`oci iam compartment list \
 		| jq -r '.data[]."compartment-id"'`
 }
 
 function oci-get-ad-ocid () {
 	## //CLI_OCI_AD// ADのOCIDを取得
     #  depend-var: CLI_OCI_COMPARTMENTID
-	export CLI_OCI_AD=`oci iam availability-domain list \
+	CLI_OCI_AD=`oci iam availability-domain list \
 		--compartment-id ${CLI_OCI_COMPARTMENTID} \
 		| jq -r '.data[].name'`
 }
 
 function oci-once-open-http-port () {
-## //CLI_OCI_AD// ADのOCIDを取得
-#  depend-var: CLI_OCI_COMPARTMENTID
-#  
-[[ ! -f init/.DONE_add_http-gate ]] && return;
-echo -n "firewall updating... "
+    [[ ! -f init/.DONE_add_http-gate ]] && return;
+    echo -n "firewall updating... "
     function kid () {
 		## 下のjsonの部分はTABインデントであること
 		securitylist_add_http=$(jq -c <<-'EOF'
@@ -85,7 +84,7 @@ echo -n "firewall updating... "
     oci network security-list update \
             --security-list-id ${CLI_OCI_SECURITY_LISTID} \
             --force \
-			--ingress-security-rules $securitylist_add_http \
+			--ingress-security-rules $securitylist_add_http
     unset kid
 echo "DONE"
 }
