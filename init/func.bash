@@ -27,11 +27,11 @@ function oci-get-ad-ocid () {
 }
 
 function oci-once-open-http-port () {
-    [[ -f init/.DONE_add_http-gate ]] && return;
+    [[ -f init/.DONE_add_http_gate ]] && return;
     echo -n "firewall updating... "
     function kid () {
-        ## 下のjsonの部分はTABインデントであること
-        securitylist_add_http=(jq -c) << EOF
+        ## 下のEOFの部分はTABインデントであること
+        cat <<-'EOF' > .DONE_add_http_gate
         [
             {
                 "source": "0.0.0.0/0",
@@ -62,10 +62,9 @@ function oci-once-open-http-port () {
                 }
             }
         ]
-EOF
-    echo $securitylist_add_http
-    touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
-    }
+		EOF
+        securitylist_add_http=`cat .DONE_add_http_gate | jq -c`
+        }
 
     ## 一番古く作られたサブネットを参照
     #  depend-var \$CLI_OCI_COMPARTMENTID
