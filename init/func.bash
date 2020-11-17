@@ -31,8 +31,8 @@ function oci-once-open-http-port () {
     echo -n "firewall updating... "
     function kid () {
         ## 下のjsonの部分はTABインデントであること
-        securitylist_add_http=(jq -c <<EOF
-[
+        securitylist_add_http=(jq -c) << EOF
+        [
             {
                 "source": "0.0.0.0/0",
                 "description": null,
