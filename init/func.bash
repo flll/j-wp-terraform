@@ -63,7 +63,7 @@ function oci-once-open-http-port () {
             }
         ]
 EOF
-    echo securitylist_add_http
+    echo $securitylist_add_http
     touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
     }
 
