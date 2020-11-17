@@ -71,7 +71,6 @@ function oci-once-open-http-port () {
     CLI_OCI_SUBNETID=`oci network subnet list \
 		--availability-domain ${CLI_OCI_AD} \
         -c ${CLI_OCI_COMPARTMENTID} \
-		${CLI_OCI_AD}
         --sort-by TIMECREATED \
         --sort-order ASC \
         | jq -r '.data[0].id'`
