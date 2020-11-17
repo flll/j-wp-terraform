@@ -31,7 +31,7 @@ function oci-once-open-http-port () {
     echo -n "firewall updating... "
     function kid () {
         ## 下のjsonの部分はTABインデントであること
-        securitylist_add_http=$(jq -c << 'EOF'
+        securitylist_add_http=(jq -c <<-'EOF'
         [
             {
                 "source": "0.0.0.0/0",
@@ -62,7 +62,7 @@ function oci-once-open-http-port () {
                 }
             }
         ]
-EOF
+		EOF
         ) && touch init/.DONE_add_http-gate ## oci-once-open-http-portで何度もアペンドしないようにファイルを追加。このファイルが存在すると変
     }
 
@@ -79,7 +79,7 @@ EOF
     CLI_OCI_SECURITY_LISTID=`oci network subnet get \
         --subnet-id ${CLI_OCI_SUBNETID} \
         | jq -r '.data."security-list-ids"[0]'`
-    echo kidkidp
+    echo kidkid
     kid
     oci network security-list update \
             --security-list-id ${CLI_OCI_SECURITY_LISTID} \
