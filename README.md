@@ -6,7 +6,7 @@ region 日本
 ```
 rm -rf j-wp-terraform/
 git clone -q https://github.com/flll/j-wp-terraform.git
-chmod +x -R *
+chmod +x -R j-wp-terraform/
 ```
 
 
