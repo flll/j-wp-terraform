@@ -13,7 +13,7 @@ chmod +x -R j-wp-terraform/
 
 インスタンスを作成
 ```
-j-wp-terraform/09_instance-terminate.bash
+j-wp-terraform/01_instance-launch.bash
 ```
 
 
