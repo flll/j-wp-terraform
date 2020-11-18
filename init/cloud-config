@@ -6,7 +6,6 @@ runcmd:
     - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     - echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -ics | sed -e 's/\(.*\)/\L\1/'  | tr '\n' ' ') edge" > /etc/apt/sources.list.d/docker.list
     - sudo apt update
-    - sudo apt upgrade -y
     - sudo apt install docker-ce docker-compose ca-certificates cron jq git gettext-base -y
     - sudo apt autoremove -y
     - sudo gpasswd -a ubuntu docker
