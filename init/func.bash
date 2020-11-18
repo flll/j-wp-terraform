@@ -4,6 +4,7 @@
 
 function oci-get-region-ocid () {
     declare -A CLI_OCI_IMAGEMAP
+    # Canonical-Ubuntu-20.04-Minimal-2020.10.14-0
     CLI_OCI_IMAGEMAP=(
         ["ap-tokyo-1"]="ocid1.image.oc1.ap-tokyo-1.aaaaaaaacmmicmlaejkkorfp5es7r6h4hfi5zxupz3muxchksgkugztkl4ea"
         ["ap-osaka-1"]="ocid1.image.oc1.ap-osaka-1.aaaaaaaamcrmkxuvsk4coctz5jtsdbtoiin4xvvjo6zceonlib57eiliaupa"
