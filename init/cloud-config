@@ -11,14 +11,18 @@ runcmd:
     - sudo chmod +x /usr/local/bin/docker-compose
     - sudo apt autoremove -y
     - sudo gpasswd -a ubuntu docker
+    - groupmod -g 84 www-data
+    - usermod -u 84 www-data
     - sudo systemctl reboot
 
+
 groups:
-  - ubuntu: [root,sys]
   - www-data: [ubuntu,www-data]
+
 users:
   - name: www-data
+    uid: 84
+    primary_group: www-data
 
 nameservers:
   addresses: [1.1.1.2,1.0.0.2]
-  
