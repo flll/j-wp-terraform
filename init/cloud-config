@@ -4,6 +4,7 @@ disable_root: True
 
 runcmd:
     - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - sed -e 's>http://ap-\(tokyo\|osaka\)-1-ad-1.clouds.archive.ubuntu.com/ubuntu/>http://ftp.jaist.ac.jp/pub/Linux/ubuntu/>g' > /etc/apt/sources.list
     - echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -ics | sed -e 's/\(.*\)/\L\1/'  | tr '\n' ' ') edge" > /etc/apt/sources.list.d/docker.list
     - sudo apt update
     - sudo apt install docker-ce ca-certificates cron jq git gettext-base -y
