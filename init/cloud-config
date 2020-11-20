@@ -12,3 +12,13 @@ runcmd:
     - sudo apt autoremove -y
     - sudo gpasswd -a ubuntu docker
     - sudo systemctl reboot
+
+groups:
+  - ubuntu: [root,sys]
+  - www-data: [ubuntu,www-data]
+users:
+  - name: www-data
+
+nameservers:
+  addresses: [1.1.1.2,1.0.0.2]
+  
