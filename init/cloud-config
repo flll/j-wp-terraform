@@ -17,7 +17,7 @@ runcmd:
 
 
 groups:
-  - www-data: [ubuntu,www-data]
+  - www-data: [www-data]
 
 users:
   - name: www-data
