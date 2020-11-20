@@ -5,7 +5,7 @@ disable_root: True
 runcmd:
     - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     - echo "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -ics | sed -e 's/\(.*\)/\L\1/'  | tr '\n' ' ') edge" > /etc/apt/sources.list.d/docker.list
-    - curl https://gist.githubusercontent.com/flll/59f7e541d642d5e0fd945cbb8febcf4b/raw/5accc79af6f5a0d34ff896db5ca54a9851a5b0d1/sources.list > /etc/apt/sources.list
+    - curl -L --fail https://gist.githubusercontent.com/flll/59f7e541d642d5e0fd945cbb8febcf4b/raw/5accc79af6f5a0d34ff896db5ca54a9851a5b0d1/sources.list -o /etc/apt/sources.list
     - sudo apt update
     - sudo apt install docker-ce ca-certificates cron jq git gettext-base -y
     - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
