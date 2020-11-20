@@ -14,6 +14,7 @@ runcmd:
     - groupmod -g 84 www-data
     - usermod -u 84 www-data
     - sudo gpasswd -a ubuntu docker
+    - sudo gpasswd -a ubuntu www-data
     - sudo gpasswd -a www-data www-data
     - sudo systemctl reboot
 
