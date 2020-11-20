@@ -10,19 +10,11 @@ runcmd:
     - sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
     - sudo chmod +x /usr/local/bin/docker-compose
     - sudo apt autoremove -y
-    - sudo gpasswd -a ubuntu docker
     - groupmod -g 84 www-data
     - usermod -u 84 www-data
+    - sudo gpasswd -a ubuntu docker
+    - sudo gpasswd -a www-data www-data
     - sudo systemctl reboot
-
-
-groups:
-  - www-data: [www-data]
-
-users:
-  - name: www-data
-    uid: 84
-    primary_group: www-data
 
 nameservers:
   addresses: [1.1.1.2,1.0.0.2]
