@@ -25,7 +25,7 @@ j-wp-terraform/09_instance-terminate.bash
 
 
 
-80番と443番の疎通をAClistに追加する
+80番と443番の疎通するようにアクセスリストを**おきかえる**
 ```
 j-wp-terraform/02_FW_update-web.bash
 ```
